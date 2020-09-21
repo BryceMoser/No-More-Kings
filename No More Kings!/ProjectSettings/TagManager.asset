@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Mail
+  - Dropoff
   layers:
   - Default
   - TransparentFX

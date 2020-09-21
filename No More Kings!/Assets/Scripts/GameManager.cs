@@ -5,16 +5,19 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject mail;
+    [SerializeField] public int score;
+    [SerializeField] Time timeRemaining;
+    [SerializeField] GameObject player;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Entering specific transform locations for all spawn locations
-        Vector3[] positions = new Vector3[]
+
+
+    private bool gameActive = true;
+    //Entering specific transform locations for all spawn location
+    private Vector3[] spawnPositions = new Vector3[]
         {
             new Vector3(-173f, 0f, -222f),
             new Vector3(-173f, 0f, -323f),
-            new Vector3(-173f, 0f, -421.5f),
+            new Vector3(-176f, 0f, -421.5f),
             new Vector3(123f, 0f, -222f),
             new Vector3(123f, 0f, -323f),
             new Vector3(123f, 0f, -421.5f),
@@ -33,13 +36,27 @@ public class GameManager : MonoBehaviour
 
         };
 
-        Instantiate(mail, positions[0], mail.transform.rotation);
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Instantiate(player, new Vector3(-29f, 2f, -232f), player.transform.rotation);
         
+        //GameObject player = GameObject.Find("Player");
+        InvokeRepeating("SpawnRandomMail", 1f, 10f);
+        score = 0;
+
     }
 
-    // Update is called once per frame
-    void Update()
+    void SpawnRandomMail()
     {
-        
+        if(gameActive == true)
+        {
+            int x = Random.Range(1, 13);
+            Vector3 spawnPos = spawnPositions[x];
+            Instantiate(mail, spawnPos, mail.transform.rotation);
+        }
     }
+
+
 }
