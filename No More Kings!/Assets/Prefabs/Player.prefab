@@ -206,8 +206,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5b471180f967c47826b80dffc4cf96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  turnSpeed: 25
+  speed: 25
+  turnSpeed: 50
   bagCapacity: 10
   currentBagSize: 0
 --- !u!65 &3241665490359869745
