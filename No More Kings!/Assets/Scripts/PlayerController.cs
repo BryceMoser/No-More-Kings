@@ -31,8 +31,9 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         //Will add the mail and score to the post office, and will empty the bag of carrying mail
-        if (currentBagSize > 0 && gameObject.CompareTag("Dropoff"))
+        if (currentBagSize > 0 && other.CompareTag("Dropoff"))
         {
             gameManager.score += currentBagSize * 20;
             currentBagSize = 0;

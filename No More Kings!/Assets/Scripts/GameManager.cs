@@ -57,6 +57,4 @@ public class GameManager : MonoBehaviour
             Instantiate(mail, spawnPos, mail.transform.rotation);
         }
     }
-
-
 }
