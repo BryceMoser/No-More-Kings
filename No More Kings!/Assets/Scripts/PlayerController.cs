@@ -12,10 +12,7 @@ public class PlayerController : MonoBehaviour
     public int currentBagSize = 0;
     private GameManager gameManager;
 
-    private void Start()
-    {
-        
-    }
+
     // Update is called once per frame
     void Update()
     {
@@ -36,7 +33,14 @@ public class PlayerController : MonoBehaviour
         if (currentBagSize > 0 && other.CompareTag("Dropoff"))
         {
             gameManager.score += currentBagSize * 20;
+            gameManager.mailbag = 0;
             currentBagSize = 0;
+        }
+
+        if (other.CompareTag("Mail") && currentBagSize < 5)
+        {
+            currentBagSize++;
+            gameManager.mailbag++;
         }
     }
 

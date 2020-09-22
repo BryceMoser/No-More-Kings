@@ -1,13 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject mail;
     [SerializeField] public int score;
-    [SerializeField] Time timeRemaining;
+    [SerializeField] public int mailbag;
+    [SerializeField] float timeRemaining = 180;
     [SerializeField] GameObject player;
+    [SerializeField] TextMeshProUGUI mailbagText;
+    [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI timeLeftText;
+ 
 
 
 
@@ -45,6 +53,26 @@ public class GameManager : MonoBehaviour
         //GameObject player = GameObject.Find("Player");
         InvokeRepeating("SpawnRandomMail", 1f, 10f);
         score = 0;
+        mailbag = 0;
+        scoreText.text = "Score: " + score;
+
+    }
+
+    private void Update()
+    {
+        scoreText.text = "Score: " + score;
+        mailbagText.text = "Mailbag: " + mailbag;
+        timeLeftText.text = "Time Left: " + timeRemaining;
+        if (timeRemaining > 0)
+        {
+            timeRemaining -= Time.deltaTime;
+        }
+        else
+        {
+            timeRemaining = 0;
+            GameOver();
+        }
+ 
 
     }
 
@@ -56,5 +84,10 @@ public class GameManager : MonoBehaviour
             Vector3 spawnPos = spawnPositions[x];
             Instantiate(mail, spawnPos, mail.transform.rotation);
         }
+    }
+
+    void GameOver()
+    {
+        gameActive = false;
     }
 }

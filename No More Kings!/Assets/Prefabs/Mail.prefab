@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1892129206961520796}
   - component: {fileID: 990613702695978246}
   - component: {fileID: 654734952898733542}
-  - component: {fileID: 8550339186844385238}
+  - component: {fileID: 8830544974864247852}
   m_Layer: 0
   m_Name: Mail
-  m_TagString: Untagged
+  m_TagString: Mail
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -94,7 +94,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8550339186844385238
+--- !u!114 &8830544974864247852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -106,5 +106,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09591aa0888cb8b4fa3589a1787f65d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3408295600350418638, guid: 172208bd01763594fb9331fddf0ee1c1, type: 3}
-  score: 20
