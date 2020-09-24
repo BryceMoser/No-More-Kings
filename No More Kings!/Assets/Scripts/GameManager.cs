@@ -61,8 +61,10 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
         scoreText.text = "Score: " + score;
-        mailbagText.text = "Mailbag: " + mailbag;
-        timeLeftText.text = "Time Left: " + timeRemaining;
+        mailbagText.text = "Mailbag: " + mailbag + " / 5";
+        float minutes = Mathf.FloorToInt(timeRemaining / 60);
+        float seconds = Mathf.FloorToInt(timeRemaining % 60);
+        timeLeftText.text = "Time Left: "+ minutes + " : " + seconds;
         if (timeRemaining > 0)
         {
             timeRemaining -= Time.deltaTime;
