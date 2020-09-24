@@ -10,16 +10,23 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject mail;
     [SerializeField] public int score;
     [SerializeField] public int mailbag;
-    [SerializeField] float timeRemaining = 180;
+    [SerializeField] public int totalVotes = 0;
+    [SerializeField] float timeRemaining = 90;
     [SerializeField] GameObject player;
     [SerializeField] TextMeshProUGUI mailbagText;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI timeLeftText;
+    [SerializeField] TextMeshProUGUI gameOverText;
+    [SerializeField] Button startButton;
+    [SerializeField] Button restartButton;
+    [SerializeField] GameObject titleScreen;
+    [SerializeField] GameObject gameOverScreen;
  
 
 
 
     private bool gameActive = true;
+    private bool timerActive = false;
     //Entering specific transform locations for all spawn location
     private Vector3[] spawnPositions = new Vector3[]
         {
@@ -48,39 +55,48 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Instantiate(player, new Vector3(-29f, 2f, -232f), player.transform.rotation);
-        
         //GameObject player = GameObject.Find("Player");
-        InvokeRepeating("SpawnRandomMail", 1f, 10f);
         score = 0;
         mailbag = 0;
         scoreText.text = "Score: " + score;
 
     }
 
+    public void StartGame()
+    {
+        titleScreen.gameObject.SetActive(false);
+        gameActive = true;
+        Instantiate(player, new Vector3(-29f, 2f, -232f), player.transform.rotation);
+        
+        InvokeRepeating("SpawnRandomMail", 1f, 10f);
+        timerActive = true;
+    }
+
     private void Update()
     {
         scoreText.text = "Score: " + score;
-        mailbagText.text = "Mailbag: " + mailbag + " / 5";
+        mailbagText.text = "Mailbag: " + mailbag + "/5";
         float minutes = Mathf.FloorToInt(timeRemaining / 60);
         float seconds = Mathf.FloorToInt(timeRemaining % 60);
-        timeLeftText.text = "Time Left: "+ minutes + " : " + seconds;
-        if (timeRemaining > 0)
+        timeLeftText.text = "Time Left: "+ minutes + ":" + seconds;
+        if (timerActive)
         {
-            timeRemaining -= Time.deltaTime;
+            if (timeRemaining > 0)
+            {
+                timeRemaining -= Time.deltaTime;
+            }
+            else
+            {
+                timeRemaining = 0;
+                GameOver();
+            }
         }
-        else
-        {
-            timeRemaining = 0;
-            GameOver();
-        }
- 
 
     }
 
     void SpawnRandomMail()
     {
-        if(gameActive == true)
+        if(gameActive)
         {
             int x = Random.Range(1, 13);
             Vector3 spawnPos = spawnPositions[x];
@@ -91,5 +107,12 @@ public class GameManager : MonoBehaviour
     void GameOver()
     {
         gameActive = false;
+        gameOverText.text = "Ballots have been cast! You collected: " + totalVotes + " ballots! Democracy wins!";
+        gameOverScreen.SetActive(true);
+    }
+    
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

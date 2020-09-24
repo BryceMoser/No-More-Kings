@@ -32,7 +32,12 @@ public class PlayerController : MonoBehaviour
         //Will add the mail and score to the post office, and will empty the bag of carrying mail
         if (currentBagSize > 0 && other.CompareTag("Dropoff"))
         {
-            gameManager.score += currentBagSize * 20;
+
+            if (currentBagSize > 1)
+                gameManager.score += currentBagSize * (currentBagSize * 20);
+            else
+                gameManager.score += 20;
+
             gameManager.mailbag = 0;
             currentBagSize = 0;
         }
@@ -41,6 +46,7 @@ public class PlayerController : MonoBehaviour
         {
             currentBagSize++;
             gameManager.mailbag++;
+            gameManager.totalVotes++;
         }
     }
 
