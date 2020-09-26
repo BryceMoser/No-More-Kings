@@ -8,12 +8,11 @@ public class PlayerController : MonoBehaviour
     private float forwardInput;
     [SerializeField] float speed = 5.0f;
     [SerializeField] float turnSpeed = 25.0f;
-    //[SerializeField] int bagCapacity = 10;
     public int currentBagSize = 0;
     private GameManager gameManager;
 
 
-    // Update is called once per frame
+    //Movement controls
     void Update()
     {
         horizontalInput = Input.GetAxis("Horizontal");
@@ -41,7 +40,7 @@ public class PlayerController : MonoBehaviour
             gameManager.mailbag = 0;
             currentBagSize = 0;
         }
-
+        //Will add the mail too the the current mailbag if there is room left
         if (other.CompareTag("Mail") && currentBagSize < 5)
         {
             currentBagSize++;

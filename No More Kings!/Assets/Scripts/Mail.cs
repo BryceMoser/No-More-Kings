@@ -9,7 +9,7 @@ public class Mail : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Collects mail for player, and adds to bag. Unless mailbag is full, then mail is not destroyed.
+        //Destroys mail object, if player mailbag is not full
         if(other.gameObject.CompareTag("Player") && other.GetComponent<PlayerController>().currentBagSize < 5)
         {
             Destroy(gameObject);

@@ -7,12 +7,17 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject mail;
+    //Variables
     [SerializeField] public int score;
     [SerializeField] public int mailbag;
     [SerializeField] public int totalVotes = 0;
     [SerializeField] float timeRemaining = 90;
+    private bool gameActive = true;
+    private bool timerActive = false;
+
+    //References to game objects, that get set within the inspector
     [SerializeField] GameObject player;
+    [SerializeField] GameObject mail;
     [SerializeField] TextMeshProUGUI mailbagText;
     [SerializeField] TextMeshProUGUI scoreText;
     [SerializeField] TextMeshProUGUI timeLeftText;
@@ -23,10 +28,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject gameOverScreen;
  
 
-
-
-    private bool gameActive = true;
-    private bool timerActive = false;
     //Entering specific transform locations for all spawn location
     private Vector3[] spawnPositions = new Vector3[]
         {
@@ -52,20 +53,21 @@ public class GameManager : MonoBehaviour
         };
 
 
-    // Start is called before the first frame update
+    //Sets text before player starts the game
     void Start()
     {
-        //GameObject player = GameObject.Find("Player");
         score = 0;
         mailbag = 0;
         scoreText.text = "Score: " + score;
 
     }
 
+    //Removes title text, starts timer, and instantiates player/mail
     public void StartGame()
     {
         titleScreen.gameObject.SetActive(false);
         gameActive = true;
+        //Player is set to specific coordinates to spawn in center
         Instantiate(player, new Vector3(-29f, 2f, -232f), player.transform.rotation);
         
         InvokeRepeating("SpawnRandomMail", 1f, 10f);
@@ -79,6 +81,7 @@ public class GameManager : MonoBehaviour
         float minutes = Mathf.FloorToInt(timeRemaining / 60);
         float seconds = Mathf.FloorToInt(timeRemaining % 60);
         timeLeftText.text = "Time Left: "+ minutes + ":" + seconds;
+        //Timer, ending game when it reaches zero
         if (timerActive)
         {
             if (timeRemaining > 0)
@@ -94,6 +97,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    //Chooses from the list of preselected positions on the map, and randomly spawns at one of them.
     void SpawnRandomMail()
     {
         if(gameActive)
@@ -104,6 +108,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Ends game, displays the number of ballots collected and the restart button
     void GameOver()
     {
         gameActive = false;
