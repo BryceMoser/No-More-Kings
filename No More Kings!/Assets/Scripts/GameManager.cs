@@ -80,7 +80,10 @@ public class GameManager : MonoBehaviour
         mailbagText.text = "Mailbag: " + mailbag + "/5";
         float minutes = Mathf.FloorToInt(timeRemaining / 60);
         float seconds = Mathf.FloorToInt(timeRemaining % 60);
-        timeLeftText.text = "Time Left: "+ minutes + ":" + seconds;
+        if (seconds > 10)
+            timeLeftText.text = "Time Left: " + minutes + ":" + seconds;
+        else
+            timeLeftText.text = "Time Left: " + minutes + ":0" + seconds;
         //Timer, ending game when it reaches zero
         if (timerActive)
         {
