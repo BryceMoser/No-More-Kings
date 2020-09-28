@@ -440,7 +440,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 167}
+  m_AnchoredPosition: {x: 0, y: 87}
   m_SizeDelta: {x: 447.85077, y: 259.81042}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &53054520
@@ -4650,7 +4650,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -382}
+  m_AnchoredPosition: {x: 0, y: -299}
   m_SizeDelta: {x: 206.70999, y: 56.62053}
   m_Pivot: {x: 0.50000024, y: 0.5000001}
 --- !u!114 &1244699103
@@ -6823,7 +6823,7 @@ MonoBehaviour:
   score: 0
   mailbag: 0
   totalVotes: 0
-  timeRemaining: 65
+  timeRemaining: 90
   player: {fileID: 3408295600350418638, guid: 172208bd01763594fb9331fddf0ee1c1, type: 3}
   mail: {fileID: 6778606661948063156, guid: 892b0118f9ecf934689183741b22d8a1, type: 3}
   mailbagText: {fileID: 1627438729}
@@ -6989,7 +6989,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -211}
+  m_AnchoredPosition: {x: 0, y: -128}
   m_SizeDelta: {x: 478.6018, y: 214.65771}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2139984809
