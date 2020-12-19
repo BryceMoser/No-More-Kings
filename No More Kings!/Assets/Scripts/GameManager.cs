@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Button restartButton;
     [SerializeField] GameObject titleScreen;
     [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject pauseScreen;
  
 
     //Entering specific transform locations for all spawn location
@@ -96,6 +97,13 @@ public class GameManager : MonoBehaviour
                 timeRemaining = 0;
                 GameOver();
             }
+
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                Time.timeScale = 0;
+                pauseScreen.SetActive(true);
+            }
+
         }
 
     }
@@ -122,5 +130,11 @@ public class GameManager : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1;
+        pauseScreen.SetActive(false);
     }
 }
